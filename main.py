@@ -29,3 +29,13 @@ class Account:
             self._update_balance(-amount)
             print(f"ถอนเงินสำเร็จ: {amount}")
     
+class SavingsAccount(Account): 
+    def __init__(self, account_holder, balance=0, interest_rate=0.03):
+        super().__init__(account_holder, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        """คำนวณและเพิ่มดอกเบี้ยเข้ายอดเงิน"""
+        interest = self.get_balance() * self.interest_rate
+        self._update_balance(interest)
+        print(f"คำนวณดอกเบี้ยสำเร็จ: +{interest} บาท")
