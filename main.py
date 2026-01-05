@@ -39,3 +39,29 @@ class SavingsAccount(Account):
         interest = self.get_balance() * self.interest_rate
         self._update_balance(interest)
         print(f"คำนวณดอกเบี้ยสำเร็จ: +{interest} บาท")
+
+   
+import datetime
+
+def log_msg(text):
+    print(f"[{datetime.datetime.now()}] {text}")
+
+def validate_price(val):
+    try:
+        n = float(val)
+        return n if n > 0 else None
+    except:
+        return None
+
+
+if __name__ == "__main__":
+    name = input("ชื่อบัญชี: ")
+    acc = SavingsAccount(name, 1000)
+    log_msg(f"สร้างบัญชี {name}")
+    
+    amount = validate_price(input("ยอดฝาก: "))
+    if amount:
+        acc.deposit(amount)
+        log_msg(f"ฝากเงิน {amount}")
+    else:
+        print("ตัวเลขผิด!")
